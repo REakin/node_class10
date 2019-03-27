@@ -3,6 +3,8 @@ const hbs = require('hbs');
 const fs = require('fs');
 var app = express();
 
+const port = process.env.PORT || 8080;
+
 hbs.registerPartials(__dirname+ '/views/partials');
 
 app.set('view engine', 'hbs');
@@ -16,10 +18,9 @@ hbs.registerHelper('message',(text)=>{
     return text.toUpperCase();
 });
 
-app.use((request, response, next)=>{
+/*app.use((request, response, next)=>{
     response.render('maintenance.hbs');
-
-});
+});*/
 
 
 app.use((request, response, next)=>{
@@ -58,5 +59,5 @@ app.get('/404', (request, response) =>{
 });
 
 app.listen(8080, () => {
-    console.log(('Server is up and listening on port 8080'))
+    console.log(`Server is up and listening on port ${port}`)
 });
